@@ -16,7 +16,7 @@
         </Description>
       </Property>
 
-      <Property name="FileSystem" value="NTFS">
+      <Property name="FileSystem" value="OTHERFS">
         <Choice>NTFS, REFS, FAT32, OTHERFS</Choice>
         <Description>
           File System Under Test.
@@ -30,13 +30,13 @@
         </Description>
       </Property>
 
-      <Property name="NTFS_ShareFolder" value="FileShare">
+      <Property name="NTFS_ShareFolder" value="test">
         <Description>
           Share folder in the NTFS system volume.
         </Description>
       </Property>
 
-      <Property name="REFS_ShareFolder" value="SMBReFSShare">
+      <Property name="REFS_ShareFolder" value="test">
         <Description>
           Share folder in the REFS system volume.
         </Description>
@@ -48,7 +48,7 @@
         </Description>
       </Property>
 
-      <Property name="OTHERFS_ShareFolder" value="FileShare">
+      <Property name="OTHERFS_ShareFolder" value="test">
         <Description>
           Share folder in the volume of other file system (Not any of the FAT32, NTFS or REFS).
         </Description>
@@ -73,7 +73,7 @@
         </Description>
       </Property>
 
-      <Property name="OTHERFS_RootDirectory" value="K$">
+      <Property name="OTHERFS_RootDirectory" value="C$">
         <Description>
           RootDirectory where Share folder existed in the volume of other file system (Neither NTFS or REFS).
         </Description>
@@ -111,26 +111,26 @@
       </Property>
 
       <Property name="WhichFileSystemSupport_Integrity" value="REFS" />
-      <Property name="WhichFileSystemSupport_Quota" value="NTFS" />
-      <Property name="WhichFileSystemSupport_ReparsePoint" value="NTFS;REFS" />
+      <Property name="WhichFileSystemSupport_Quota" value="NTFS;OTHERFS" />
+      <Property name="WhichFileSystemSupport_ReparsePoint" value="NTFS;REFS;OTHERFS" />
       <Property name="WhichFileSystemSupport_ObjectID" value="NTFS" />
-      <Property name="WhichFileSystemSupport_Offload" value="NTFS" />
+      <Property name="WhichFileSystemSupport_Offload" value="NTFS;OTHERFS" />
       <Property name="WhichFileSystemSupport_Compression" value="NTFS" />
       <Property name="WhichFileSystemSupport_Encryption" value="NTFS;FAT32" />
       <Property name="WhichFileSystemSupport_ExtendedAttribute" value="NTFS" />
-      <Property name="WhichFileSystemSupport_SparseFile" value="NTFS;REFS" />
-      <Property name="WhichFileSystemSupport_QueryAllocatedRanges" value="NTFS;REFS" />
-      <Property name="WhichFileSystemSupport_SetZeroData" value="NTFS;REFS" />
-      <Property name="WhichFileSystemSupport_FileLinkInfo" value="NTFS" />
+      <Property name="WhichFileSystemSupport_SparseFile" value="NTFS;REFS;OTHERFS" />
+      <Property name="WhichFileSystemSupport_QueryAllocatedRanges" value="NTFS;REFS;OTHERFS" />
+      <Property name="WhichFileSystemSupport_SetZeroData" value="NTFS;REFS;OTHERFS" />
+      <Property name="WhichFileSystemSupport_FileLinkInfo" value="NTFS;OTHERFS" />
       <Property name="WhichFileSystemSupport_ShortName" value="NTFS" />
       <Property name="WhichFileSystemSupport_QueryFileFsControlInformation" value="NTFS" />
       <Property name="WhichFileSystemSupport_QueryFileFsObjectIdInformation" value="NTFS" />
       <Property name="WhichFileSystemSupport_QueryFileObjectIdInformation" value="NTFS" />
-      <Property name="WhichFileSystemSupport_QueryFileReparsePointInformation" value="NTFS" />
-      <Property name="WhichFileSystemSupport_QueryFileQuotaInformation" value="NTFS" />
+      <Property name="WhichFileSystemSupport_QueryFileReparsePointInformation" value="NTFS;OTHERFS" />
+      <Property name="WhichFileSystemSupport_QueryFileQuotaInformation" value="NTFS;OTHERFS" />
       <Property name="WhichFileSystemSupport_ObjectIdIoCtlRequest" value="NTFS" />
-      <Property name="WhichFileSystemSupport_OpenHasManageVolumeAccess" value="NTFS;REFS" />
-      <Property name="WhichFileSystemSupport_StreamRename" value="NTFS;" />
+      <Property name="WhichFileSystemSupport_OpenHasManageVolumeAccess" value="NTFS;REFS;OTHERFS" />
+      <Property name="WhichFileSystemSupport_StreamRename" value="NTFS;OTHERFS;" />
       <Property name="WhichFileSystemSupport_StreamSnapshotManagement" value="REFS;" />
 
 
@@ -152,7 +152,7 @@
         </Description>
       </Property>
 
-      <Property name="OTHERFS_ClusterSizeInKB" value="4">
+      <Property name="OTHERFS_ClusterSizeInKB" value="1">
         <Description>
           The cluster size of other file system, in KB
         </Description>
