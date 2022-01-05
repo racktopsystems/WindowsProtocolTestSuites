@@ -42,20 +42,20 @@
         </Description>
       </Property>
 
-      <Property name="SutComputerName" value="node01.contoso.com">
+      <Property name="SutComputerName" value="bsros23">
         <Description>
           Computer name of system under test (SUT)
           If SUT does not have a computer name, set the value to SUT's IP address
         </Description>
       </Property>
 
-      <Property name="SutIPAddress" value="192.168.1.11" >
+      <Property name="SutIPAddress" value="192.168.202.122" >
         <Description>
           IP address or Host Name of SUT to establish connections
         </Description>
       </Property>
 
-      <Property name="DomainName" value="contoso.com" >
+      <Property name="DomainName" value="bsros23" >
         <Description>
           Domain name where the SUT locates
           If SUT is in WORKGROUP, set it to the value of SutComputerName
@@ -63,7 +63,7 @@
         </Description>
       </Property>
 
-      <Property name="DCServerComputerName" value="DC01.contoso.com">
+      <Property name="DCServerComputerName" value="">
         <Description>
           Computer ip or name of DC
           If DC does not have a computer name or SUT is in WORKGROUP, leave it blank
@@ -76,45 +76,45 @@
         </Description>
       </Property>
 
-      <Property name="AdminUserName" value="Administrator">
+      <Property name="AdminUserName" value="admin">
         <Description>
           Administrator user account name of the SUT
         </Description>
       </Property>
 
-      <Property name="NonAdminUserName" value="nonadmin" >
+      <Property name="NonAdminUserName" value="test" >
         <Description>
           Non administrator user account name of the SUT. If no such user, leave it blank
         </Description>
       </Property>
 
-      <Property name="GuestUserName" value="Guest">
+      <Property name="GuestUserName" value="">
         <Description>
           Domain guest account name. If no such user, leave it blank
         </Description>
       </Property>
 
-      <Property name="PasswordForAllUsers" value="Password01!">
+      <Property name="PasswordForAllUsers" value="test">
         <Description>
           Password for all the users listed as above: AdminUserName, NonAdminUserName, GuestUserName.
           (To simplify the config, the 3 accounts use the same password.)
         </Description>
       </Property>
 
-      <Property name="BasicFileShare" value="SMBBasic">
+      <Property name="BasicFileShare" value="test">
         <Description>
           Name for file share without encryption enabled
         </Description>
       </Property>
 
-      <Property name="EncryptedFileShare" value="SMBEncrypted">
+      <Property name="EncryptedFileShare" value="teste">
         <Description>
           Name for file share name with encryption enabled
           If SUT does not have such share, leave it blank
         </Description>
       </Property>
 
-      <Property name="CompressedFileShare" value="SMBCompressed">
+      <Property name="CompressedFileShare" value="">
         <Description>
             Name for file share with compression enabled
             If SUT does not have such share, leave it blank
@@ -150,7 +150,7 @@
         </Description>
       </Property>
 
-      <Property name="IsMultiChannelCapable" value="true">
+      <Property name="IsMultiChannelCapable" value="false">
         <Choice>true,false</Choice>
         <Description>
           Set true if SUT supports multiple channel, otherwise set it to false
@@ -172,7 +172,7 @@
         </Description>
       </Property>
 
-      <Property name="IsDirectoryLeasingSupported" value="true">
+      <Property name="IsDirectoryLeasingSupported" value="false">
         <Choice>true,false</Choice>
         <Description>
           Set true if SUT supports directory leasing, otherwise set it to false
@@ -207,7 +207,7 @@
         </Description>
       </Property>
 
-      <Property name="UnsupportedIoCtlCodes" value="FSCTL_OFFLOAD_READ;FSCTL_OFFLOAD_WRITE;FSCTL_FILE_LEVEL_TRIM">
+      <Property name="UnsupportedIoCtlCodes" value="FSCTL_FILE_LEVEL_TRIM">
         <Description>
           List all unsupported IoCtl codes (defined in [MS-SMB2] section 2.2.31). Current IoCtl codes covered in this test suite include
           FSCTL_LMR_REQUEST_RESILIENCY
@@ -238,14 +238,14 @@
         </Description>
       </Property>
 
-      <Property name="CAShareName" value="SMBClustered">
+      <Property name="CAShareName" value="testca">
         <Description>
           Name of file share that supports Continuous Availability (CA)
           If SUT does not have such share, leave it blank
         </Description>
       </Property>
 
-      <Property name="CAShareServerName" value="GeneralFS.contoso.com">
+      <Property name="CAShareServerName" value="bsros23">
         <Description>
           Computer name of server which hosts Continuous Availability (CA) share
           If the server does not have a computer name, set it with IP address
@@ -253,13 +253,13 @@
         </Description>
       </Property>
 
-      <Property name="ClientNic1IPAddress" value="192.168.1.111">
+      <Property name="ClientNic1IPAddress" value="192.168.202.1">
         <Description>
           One IP address or host name on local test drive computer to establish connections to SUT
         </Description>
       </Property>
 
-      <Property name="ClientNic2IPAddress" value="192.168.2.111">
+      <Property name="ClientNic2IPAddress" value="">
         <Description>
           Another IP address or host name on local test drive computer to establish connections to SUT
           If test drive computer only has one IP address, leave it blank
@@ -315,7 +315,7 @@
         </Description>
       </Property>
 
-      <Property name="IsGlobalRejectUnencryptedAccessEnabled" value="true">
+      <Property name="IsGlobalRejectUnencryptedAccessEnabled" value="false">
         <Choice>true,false</Choice>
         <Description>
           Set true if SUT will reject any unencrypted messages, otherwise set it to false
