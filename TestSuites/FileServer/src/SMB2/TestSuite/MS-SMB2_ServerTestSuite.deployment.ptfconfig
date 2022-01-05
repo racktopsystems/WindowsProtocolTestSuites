@@ -16,27 +16,27 @@
         </Description>
       </Property>
 
-      <Property name="SutAlternativeIPAddress" value="192.168.2.11">
+      <Property name="SutAlternativeIPAddress" value="">
         <Description>
           Alternative IP or host name address of SUT to establish connection
           If SUT only has one IP, leave it blank
         </Description>
       </Property>
 
-      <Property name="FileShareSupportingIntegrityInfo" value="SMBReFSShare">
+      <Property name="FileShareSupportingIntegrityInfo" value="">
         <Description>
           Name of file share that support set/get integrity info
           If SUT does not have such share, leave it blank
         </Description>
       </Property>
 
-      <Property name="Symboliclink" value="Symboliclink">
+      <Property name="Symboliclink" value="">
         <Description>
           Name of symbolic link under BasicFileShare share. If SUT does not have a symbolic link, leave it blank
         </Description>
       </Property>
 
-      <Property name="SymboliclinkInSubFolder" value="Sub\Symboliclink2">
+      <Property name="SymboliclinkInSubFolder" value="">
         <Description>
           Relative path of symbolic link under sub folder of BasicFileShare share. If SUT does not have a symbolic link, leave it blank
         </Description>
@@ -60,7 +60,7 @@
         </Description>
       </Property>
 
-      <Property name="InfrastructureRootShare" value="Volume1">
+      <Property name="InfrastructureRootShare" value="">
         <Description>
           Name for infrastructure root share.
           If SUT does not have such share, leave it blank
@@ -75,7 +75,7 @@
 
     </Group>
     <Group name="HVRS">
-      <Property name="SharePath" value="\\node01.contoso.com\SMBBasic">
+      <Property name="SharePath" value="\\wpts-sut\testca">
         <!--File_level_trim passed on smbbasic-->
         <!--Property name="SharePath" value="\\node01\SMBBasic"-->
         <!--Property name="SharePath" value="\\node01\SMBReFSShare"-->
@@ -84,7 +84,7 @@
           If no such share, leave it blank
         </Description>
       </Property>
-      <Property name="IsOffLoadImplemented" value="false">
+      <Property name="IsOffLoadImplemented" value="true">
         <Choice>True, False</Choice>
         <Description>
           Platform implements Off_Load Operations.
@@ -96,9 +96,10 @@
           Platform implements FSCTL_SET_ZERO_DATA Operations.
         </Description>
       </Property>
-      <Property name="VolumnClusterSize" value="64">
+      <Property name="VolumnClusterSize" value="4">
         <Description>
-          The allocation unit size of the share volume. You can get this value when you try to format a disk.
+          The allocation unit size of the share volume (in KB).
+          You can get this value when you try to format a disk.
         </Description>
       </Property>
     </Group>

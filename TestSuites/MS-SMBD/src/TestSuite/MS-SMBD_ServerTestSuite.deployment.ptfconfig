@@ -33,7 +33,7 @@
         WindowsServer2012R2 = 0x10000007,
         WindowsServer2016 = 0x10000008
     -->
-    <Property name="Platform" value="WindowsServer2012R2"/>
+    <Property name="Platform" value="NonWindows"/>
 
     <!--Name of file which is used in test read large content-->
     <Property name="TestFile_ReadLargeFile" value="testFile_ReadLargeFile.txt"/>
