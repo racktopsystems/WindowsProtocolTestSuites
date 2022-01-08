@@ -30,7 +30,7 @@
         </Description>
       </Property>
 
-      <Property name="NTFS_ShareFolder" value="FileShare">
+      <Property name="NTFS_ShareFolder" value="test">
         <Description>
           Share folder in the NTFS system volume.
         </Description>
@@ -48,7 +48,7 @@
         </Description>
       </Property>
 
-      <Property name="OTHERFS_ShareFolder" value="FileShare">
+      <Property name="OTHERFS_ShareFolder" value="test">
         <Description>
           Share folder in the volume of other file system (Not any of the FAT32, NTFS or REFS).
         </Description>

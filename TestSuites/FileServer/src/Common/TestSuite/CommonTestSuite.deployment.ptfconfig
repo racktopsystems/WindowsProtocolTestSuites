@@ -49,13 +49,13 @@
         </Description>
       </Property>
 
-      <Property name="SutIPAddress" value="192.168.202.132" >
+      <Property name="SutIPAddress" value="192.168.202.132">
         <Description>
           IP address or Host Name of SUT to establish connections
         </Description>
       </Property>
 
-      <Property name="DomainName" value="oitest" >
+      <Property name="DomainName" value="oitest">
         <Description>
           Domain name where the SUT locates
           If SUT is in WORKGROUP, set it to the value of SutComputerName
@@ -82,7 +82,7 @@
         </Description>
       </Property>
 
-      <Property name="NonAdminUserName" value="test" >
+      <Property name="NonAdminUserName" value="test">
         <Description>
           Non administrator user account name of the SUT. If no such user, leave it blank
         </Description>
@@ -207,7 +207,8 @@
         </Description>
       </Property>
 
-      <Property name="UnsupportedIoCtlCodes" value="FSCTL_FILE_LEVEL_TRIM">
+      <Property name="UnsupportedIoCtlCodes"
+	value="FSCTL_FILE_LEVEL_TRIM;FSCTL_SET_INTEGRITY_INFORMATION">
         <Description>
           List all unsupported IoCtl codes (defined in [MS-SMB2] section 2.2.31). Current IoCtl codes covered in this test suite include
           FSCTL_LMR_REQUEST_RESILIENCY
@@ -222,7 +223,8 @@
         </Description>
       </Property>
 
-      <Property name="UnsupportedCreateContexts" value="">
+      <Property name="UnsupportedCreateContexts"
+	value="SMB2_CREATE_APP_INSTANCE_ID;SMB2_CREATE_APP_INSTANCE_VERSION">
         <Description>
           List all unsupported Create Contexts. Current Create Contexts covered includes
           SMB2_CREATE_QUERY_ON_DISK_ID
@@ -293,7 +295,7 @@
         </Description>
       </Property>
 
-      <Property name="SutSupportedEncryptionAlgorithms" value="ENCRYPTION_AES128_GCM;ENCRYPTION_AES128_CCM;ENCRYPTION_AES256_GCM;ENCRYPTION_AES256_CCM">
+      <Property name="SutSupportedEncryptionAlgorithms" value="ENCRYPTION_AES128_GCM;ENCRYPTION_AES128_CCM">
         <Description>
           List all supported encryption algorithms, possible values: ENCRYPTION_AES128_GCM, ENCRYPTION_AES128_CCM, ENCRYPTION_AES256_GCM, ENCRYPTION_AES256_CCM
           Multiple values should be separated by semicolons

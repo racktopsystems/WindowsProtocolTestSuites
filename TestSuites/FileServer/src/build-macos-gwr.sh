@@ -56,6 +56,7 @@ mkdir -p $OutDir/Batch
 cp -f $TestSuiteRoot/TestSuites/FileServer/src/Batch/*.sh $OutDir/Batch/
 cp -f $TestSuiteRoot/TestSuites/FileServer/src/Batch/*.ps1 $OutDir/Batch/
 cp -f $TestSuiteRoot/common/RunTestCasesByBinariesAndFilter.* $OutDir/Batch/
+cp -f $TestSuiteRoot/TestSuites/FileServer/src/Batch/*.xsl $OutDir/Batch/
 
 mkdir -p $OutDir/Scripts
 cp -f -R $TestSuiteRoot/TestSuites/FileServer/Setup/Scripts/* $OutDir/Scripts/
