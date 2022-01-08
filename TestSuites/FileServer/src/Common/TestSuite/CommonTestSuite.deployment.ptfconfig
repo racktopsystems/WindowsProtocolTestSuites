@@ -42,20 +42,20 @@
         </Description>
       </Property>
 
-      <Property name="SutComputerName" value="bsros23">
+      <Property name="SutComputerName" value="oitest">
         <Description>
           Computer name of system under test (SUT)
           If SUT does not have a computer name, set the value to SUT's IP address
         </Description>
       </Property>
 
-      <Property name="SutIPAddress" value="192.168.202.122" >
+      <Property name="SutIPAddress" value="192.168.202.132" >
         <Description>
           IP address or Host Name of SUT to establish connections
         </Description>
       </Property>
 
-      <Property name="DomainName" value="bsros23" >
+      <Property name="DomainName" value="oitest" >
         <Description>
           Domain name where the SUT locates
           If SUT is in WORKGROUP, set it to the value of SutComputerName
@@ -76,7 +76,7 @@
         </Description>
       </Property>
 
-      <Property name="AdminUserName" value="admin">
+      <Property name="AdminUserName" value="root">
         <Description>
           Administrator user account name of the SUT
         </Description>
@@ -245,7 +245,7 @@
         </Description>
       </Property>
 
-      <Property name="CAShareServerName" value="bsros23">
+      <Property name="CAShareServerName" value="oitest">
         <Description>
           Computer name of server which hosts Continuous Availability (CA) share
           If the server does not have a computer name, set it with IP address
