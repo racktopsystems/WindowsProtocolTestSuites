@@ -10,15 +10,7 @@
 
 InvocationPath=$(dirname "$0")
 
-Binaries="Auth_ServerTestSuite.dll,\
-    MS-DFSC_ServerTestSuite.dll,\
-    MS-FSAModel_ServerTestSuite.dll,\
-    MS-FSA_ServerTestSuite.dll,\
-    MS-RSVD_ServerTestSuite.dll,\
-    MS-SMB2Model_ServerTestSuite.dll,\
-    MS-SMB2_ServerTestSuite.dll,\
-    MS-SQOS_ServerTestSuite.dll,\
-    ServerFailoverTestSuite.dll"
+Binaries="MS-SMB2_ServerTestSuite.dll"
 
 # Filter=$1
 Filter="TestCategory=BVT"
