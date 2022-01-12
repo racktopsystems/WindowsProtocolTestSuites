@@ -33,6 +33,7 @@
           <th align="left">Outcome</th>
         </tr>
         <xsl:for-each select="/t:TestRun/t:Results/t:UnitTestResult" >
+	<xsl:sort select="@testName"/>
         <tr valign="top" class="resultsRow">
             <td><xsl:value-of select="@testName"/></td>
 	    <td><xsl:value-of select="@outcome"/></td> 
