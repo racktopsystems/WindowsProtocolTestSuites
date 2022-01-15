@@ -54,7 +54,7 @@ namespace Microsoft.Protocols.TestSuites.FileSharing.FSA.TestSuite
             BaseTestSite.Log.Add(LogEntryKind.Comment, "\t 2. Transport: " + this.fsaAdapter.Transport.ToString());
             BaseTestSite.Log.Add(LogEntryKind.Comment, "\t 3. Share Path: " + this.fsaAdapter.UncSharePath);
 
-            BaseTestSite.Assume.AreEqual(FileSystem.NTFS, this.fsaAdapter.FileSystem, "Alternate Data Stream is only supported by NTFS file system.");
+//            BaseTestSite.Assume.AreEqual(FileSystem.NTFS, this.fsaAdapter.FileSystem, "Alternate Data Stream is only supported by NTFS file system.");
 
             this.fsaAdapter.FsaInitial();
 
