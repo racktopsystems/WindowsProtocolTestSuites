@@ -144,6 +144,96 @@ namespace Microsoft.Protocols.TestSuites.FileSharing.SMB2.TestSuite
         }
 
         [TestMethod]
+        [TestCategory(TestCategories.Bvt)]
+        [TestCategory(TestCategories.Smb30)]
+        [TestCategory(TestCategories.FsctlOffloadReadWrite)]
+        [Description("This test case is designed to test whether server can handle offload copy correctly when copy content between two files when file length is NOT block aligned.")]
+        public void BVT_CopyOffloadOddLength()
+        {
+	    // This is intentionally NOT block aligned.
+	    // Windows CopyFile() tolerates this.
+	    int fileLenAligned = TestConfig.WriteBufferLengthInKb*1024;
+	    int fileLen = fileLenAligned - 64;
+
+            BaseTestSite.Log.Add(LogEntryKind.TestStep,
+                "1. Create a file with specified length {0} as the source of offload copy.", fileLen);
+            string content = Smb2Utility.CreateRandomStringInByte(fileLen);
+            uint treeId;
+            FILEID fileIdSrc;
+            PrepareTestFile(content, out treeId, out fileIdSrc);
+
+            BaseTestSite.Log.Add(LogEntryKind.TestStep,
+                "2. Client sends IOCTL request with FSCTL_OFFLOAD_READ to ask server to generate the token of the content for offload copy.");
+            STORAGE_OFFLOAD_TOKEN token;
+            ulong fileOffsetToRead = 0; //FileOffset should be aligned to logical sector boundary on the volume, e.g. 512 bytes
+            ulong copyLengthToRead = (ulong)fileLenAligned; //CopyLength should be aligned to logical sector boundary on the volume, e.g. 512 bytes
+            ulong transferLength;
+            // Request hardware to generate a token that represents a range of file to be copied
+            client.OffloadRead(
+                treeId,
+                fileIdSrc,
+                fileOffsetToRead,
+                copyLengthToRead,
+                out transferLength,
+                out token);
+
+            BaseTestSite.Log.Add(LogEntryKind.Debug, "Transfer length during OFFLOAD_READ is {0}", transferLength);
+            BaseTestSite.Assert.AreEqual(copyLengthToRead, transferLength,
+                "Transfer length {0} should be equal to copy length {1}", transferLength, copyLengthToRead);
+
+            BaseTestSite.Log.Add(LogEntryKind.TestStep, "3. Create another file as the destination of offload copy.");
+            FILEID fileIdDest;
+            Smb2CreateContextResponse[] serverCreateContexts;
+            client.Create(
+                treeId,
+                GetTestFileName(Smb2Utility.GetUncPath(TestConfig.SutComputerName, TestConfig.BasicFileShare)),
+                CreateOptions_Values.FILE_NON_DIRECTORY_FILE,
+                out fileIdDest,
+                out serverCreateContexts);
+
+            // Note: NOT writing the dest first.  Let ODX copy determine EOF.
+
+            BaseTestSite.Log.Add(LogEntryKind.TestStep, "4. Client sends IOCTL request with FSCTL_OFFLOAD_WRITE to ask server to copy the content from source to destination.");
+            ulong fileOffsetToWrite = 0; //FileOffset should be aligned to logical sector boundary on the volume, e.g. 512 bytes
+            ulong copyLengthToWrite = transferLength; //CopyLength should be aligned to logical sector boundary on the volume, e.g. 512 bytes
+            ulong transferOffset = 0; //TransferOffset should be aligned to logical sector boundary on the volume, e.g. 512 bytes
+            // Request hardware to write a range of file which is represented by the generated token
+            // and length/offset to another place (a different file or different offset of the same file)
+            client.OffloadWrite(
+                treeId,
+                fileIdDest,
+                fileOffsetToWrite,
+                copyLengthToWrite,
+                transferOffset,
+                token);
+
+            BaseTestSite.Log.Add(LogEntryKind.TestStep, "5. Compare the content of section 1 with the content of section 2.");
+            string readContent;
+            // Read the content that was just offload copied
+            client.Read(
+                treeId,
+                fileIdDest,
+                fileOffsetToWrite,
+                (uint)copyLengthToWrite,
+                out readContent);
+
+            BaseTestSite.Assert.AreEqual(
+                readContent.Length, fileLen,
+                "File read size should equal to original");
+
+            BaseTestSite.Assert.IsTrue(
+                readContent.Equals(content),
+                "File content read should equal to original");
+
+            BaseTestSite.Log.Add(LogEntryKind.TestStep, "6. Tear down the client by sending the following requests: CLOSE; TREE_DISCONNECT; LOG_OFF.");
+            client.Close(treeId, fileIdSrc);
+            client.Close(treeId, fileIdDest);
+            client.TreeDisconnect(treeId);
+            client.LogOff();
+
+        }
+
+        [TestMethod]
         [TestCategory(TestCategories.Smb30)]
         [TestCategory(TestCategories.FsctlOffloadReadWrite)]
         [TestCategory(TestCategories.Positive)]
