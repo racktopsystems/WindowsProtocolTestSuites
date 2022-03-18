@@ -34,30 +34,31 @@ fi
 
 PluginDir="$OutDir/Plugin"
 mkdir -p $PluginDir
-cp $TestSuiteRoot/TestSuites/FileServer/src/Plugin/FileServerPlugin/*.xml "$PluginDir/" -f
+cp -f $TestSuiteRoot/TestSuites/FileServer/src/Plugin/FileServerPlugin/*.xml "$PluginDir/"
 
 TargetDir="$PluginDir/doc"
 mkdir -p $TargetDir
-cp $TestSuiteRoot/TestSuites/FileServer/src/Plugin/FileServerPlugin/Docs/* "$TargetDir/" -f
+cp -f $TestSuiteRoot/TestSuites/FileServer/src/Plugin/FileServerPlugin/Docs/* "$TargetDir/"
 
 TargetDir="$PluginDir/data"
 mkdir -p $TargetDir
-cp $TestSuiteRoot/TestSuites/FileServer/src/Plugin/FileServerPlugin/Data/* "$TargetDir/" -f
+cp -f $TestSuiteRoot/TestSuites/FileServer/src/Plugin/FileServerPlugin/Data/* "$TargetDir/"
 
 mkdir -p $OutDir/Batch
-cp $TestSuiteRoot/TestSuites/FileServer/src/Batch/*.sh $OutDir/Batch/ -f
-cp $TestSuiteRoot/TestSuites/FileServer/src/Batch/*.ps1 $OutDir/Batch/ -f
-cp $TestSuiteRoot/common/RunTestCasesByBinariesAndFilter.* $OutDir/Batch/ -f
+cp -f $TestSuiteRoot/TestSuites/FileServer/src/Batch/*.sh $OutDir/Batch/
+cp -f $TestSuiteRoot/TestSuites/FileServer/src/Batch/*.ps1 $OutDir/Batch/
+cp -f $TestSuiteRoot/common/RunTestCasesByBinariesAndFilter.* $OutDir/Batch/
+cp -f $TestSuiteRoot/TestSuites/FileServer/src/Batch/*.xsl $OutDir/Batch/
 
 mkdir -p $OutDir/Scripts
-cp -R $TestSuiteRoot/TestSuites/FileServer/Setup/Scripts/* $OutDir/Scripts/ -f
+cp -f -R $TestSuiteRoot/TestSuites/FileServer/Setup/Scripts/* $OutDir/Scripts/
 for curr in "${CommonScripts[@]}"; do
-    cp $TestSuiteRoot/CommonScripts/$curr $OutDir/Scripts/ -f
+    cp -f $TestSuiteRoot/CommonScripts/$curr $OutDir/Scripts/
 done
 
 mkdir -p $OutDir/Bin/Data
-cp -R $TestSuiteRoot/TestSuites/FileServer/src/Data/* $OutDir/Bin/Data -f
-cp $TestSuiteRoot/TestSuites/FileServer/src/Deploy/LICENSE.rtf $OutDir/LICENSE.rtf -f
+cp -f -R $TestSuiteRoot/TestSuites/FileServer/src/Data/* $OutDir/Bin/Data
+cp -f $TestSuiteRoot/TestSuites/FileServer/src/Deploy/LICENSE.rtf $OutDir/LICENSE.rtf
 
 Cmd="dotnet publish \"$TestSuiteRoot/TestSuites/FileServer/ShareUtil/ShareUtil.sln\" -c $Configuration -o $OutDir/Utils"
 
@@ -77,7 +78,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-cp $TestSuiteRoot/AssemblyInfo/.version $OutDir/Bin -f
+cp -f $TestSuiteRoot/AssemblyInfo/.version $OutDir/Bin
 
 echo ==========================================================
 echo          Build FileServer test suite successfully         
