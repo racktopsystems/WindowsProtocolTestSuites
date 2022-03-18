@@ -6,5 +6,8 @@ for f in *.trx
 do
 	b=${f%.trx}
 
-	xsltproc -o $b.html ../Batch/make-html.xsl $f
+	if [ ! -e $b.html ] ; then
+		xsltproc -o $b.html ../Batch/make-html.xsl $f
+		touch -r $f $b.html
+	fi
 done
