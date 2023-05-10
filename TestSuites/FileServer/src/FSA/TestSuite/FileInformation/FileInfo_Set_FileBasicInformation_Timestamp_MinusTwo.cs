@@ -221,31 +221,36 @@ namespace Microsoft.Protocols.TestSuites.FileSharing.FSA.TestSuite
             string operatingSystem = this.fsaAdapter.TestConfig.Platform.ToString();
 
             if (this.fsaAdapter.FileSystem != FileSystem.NTFS
-                && this.fsaAdapter.FileSystem != FileSystem.REFS)
+                && this.fsaAdapter.FileSystem != FileSystem.REFS
+                && this.fsaAdapter.FileSystem != FileSystem.OTHERFS)
             {
                 this.TestSite.Assume.Inconclusive("Value -2 for FileBasicInformation timestamps is only supported by NTFS and ReFS.");
             }
             else if (timestampType == TimestampType.ChangeTime &&
                 (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_NTFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.NTFS)
-                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS))
+                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS)
+                || this.fsaAdapter.FileSystem == FileSystem.OTHERFS)
             {
                 SetChangeTime(-3);
             }
             else if (timestampType == TimestampType.LastAccessTime &&
                 (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_NTFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.NTFS)
-                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS))
+                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS)
+                || this.fsaAdapter.FileSystem == FileSystem.OTHERFS)
             {
                 SetLastAccessTime(-3);
             }
             else if (timestampType == TimestampType.LastWriteTime &&
                 (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_NTFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.NTFS)
-                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS))
+                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS)
+                || this.fsaAdapter.FileSystem == FileSystem.OTHERFS)
             {
                 SetLastWriteTime(-3);
             }
             else if (timestampType == TimestampType.CreationTime &&
                 (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_NTFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.NTFS)
-                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS))
+                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS)
+                || this.fsaAdapter.FileSystem == FileSystem.OTHERFS)
             {
                 SetCreationTime(-3);
             }
@@ -264,12 +269,14 @@ namespace Microsoft.Protocols.TestSuites.FileSharing.FSA.TestSuite
             string operatingSystem = this.fsaAdapter.TestConfig.Platform.ToString();
             
             if (this.fsaAdapter.FileSystem != FileSystem.NTFS
-                && this.fsaAdapter.FileSystem != FileSystem.REFS)
+                && this.fsaAdapter.FileSystem != FileSystem.REFS
+                && this.fsaAdapter.FileSystem != FileSystem.OTHERFS)
             {
                 this.TestSite.Assume.Inconclusive("Value -2 for FileBasicInformation timestamps is only supported by NTFS and ReFS.");
             }
             else if ((!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_NTFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.NTFS)
-                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS))
+                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS)
+                || this.fsaAdapter.FileSystem == FileSystem.OTHERFS)
             {
                 TestMinusTwoTimestamp(fileType, timestampType);
             }
@@ -377,6 +384,7 @@ namespace Microsoft.Protocols.TestSuites.FileSharing.FSA.TestSuite
             if (fileType == FileType.DataFile)
             {
                 WriteToFile(fileName);
+                PerformReadWrite();
             }
             else
             {

@@ -60,7 +60,9 @@ namespace Microsoft.Protocols.TestSuites.FileSharing.FSA.TestSuite
         [Description("Set file basic information on data file and check file system responds according to [MS-FSA] 2.1.5.14.2")]
         public void FileInfo_Set_FileBasicInformation_File_ChangeTime()
         {
-            if (this.fsaAdapter.FileSystem != FileSystem.NTFS && this.fsaAdapter.FileSystem != FileSystem.REFS)
+            if (this.fsaAdapter.FileSystem != FileSystem.NTFS &&
+		this.fsaAdapter.FileSystem != FileSystem.REFS &&
+		this.fsaAdapter.FileSystem != FileSystem.OTHERFS)
             {
                 this.TestSite.Assume.Inconclusive("<153> Section 2.1.5.14.2: The FAT32 file system doesn’t process the ChangeTime field.");
             }
@@ -134,7 +136,9 @@ namespace Microsoft.Protocols.TestSuites.FileSharing.FSA.TestSuite
         [Description("Set file basic information on directory and check file system responds according to [MS-FSA] 2.1.5.14.2")]
         public void FileInfo_Set_FileBasicInformation_Dir_ChangeTime()
         {
-            if (this.fsaAdapter.FileSystem != FileSystem.NTFS && this.fsaAdapter.FileSystem != FileSystem.REFS)
+            if (this.fsaAdapter.FileSystem != FileSystem.NTFS &&
+		this.fsaAdapter.FileSystem != FileSystem.REFS &&
+		this.fsaAdapter.FileSystem != FileSystem.OTHERFS)
             {
                 this.TestSite.Assume.Inconclusive("<153> Section 2.1.5.14.2: The FAT32 file system doesn’t process the ChangeTime field.");
             }

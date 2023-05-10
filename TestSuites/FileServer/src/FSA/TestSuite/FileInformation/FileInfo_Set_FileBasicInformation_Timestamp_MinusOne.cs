@@ -115,12 +115,14 @@ namespace Microsoft.Protocols.TestSuites.FileSharing.FSA.TestSuite
             string operatingSystem = this.fsaAdapter.TestConfig.Platform.ToString();
 
             if (this.fsaAdapter.FileSystem != FileSystem.NTFS
-                && this.fsaAdapter.FileSystem != FileSystem.REFS)
+                && this.fsaAdapter.FileSystem != FileSystem.REFS
+                && this.fsaAdapter.FileSystem != FileSystem.OTHERFS)
             {
                 this.TestSite.Assume.Inconclusive("Value -2 for FileBasicInformation timestamps is only supported by NTFS and ReFS.");
             }
             else if ((!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_NTFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.NTFS)
-                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS))
+                || (!Enum.IsDefined(typeof(OS_MinusTwo_NotSupported_REFS), operatingSystem) && this.fsaAdapter.FileSystem == FileSystem.REFS)
+                || this.fsaAdapter.FileSystem == FileSystem.OTHERFS)
             {
                 TestMinusOneTimestamp(fileType, timestampType);
             }
